@@ -1,5 +1,5 @@
 <%
-session.setAttribute("userid", null);
-session.invalidate();
-response.sendRedirect("index.jsp");
+    session.setAttribute("userid", null);
+    session.invalidate();
+    response.sendRedirect("index.jsp");
 %>	
