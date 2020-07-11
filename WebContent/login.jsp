@@ -1,27 +1,44 @@
+<%@page import="com.db.utils.DbConnection"%>
 <%@ page import ="java.sql.*"
- %>
+         %>
 <%
-    String userid = request.getParameter("uname");    
+    String userid = request.getParameter("uname");
     String pwd = request.getParameter("pass");
-    Class.forName("com.mysql.jdbc.Driver");
-    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/PizzaShop","root", "root123");
+    Connection con = DbConnection.init();
     Statement st = con.createStatement();
     ResultSet rs;
-   // out.println("Connected to Server");
 
-    rs = st.executeQuery("select * from members where uname='" + userid + "' and pass='" + pwd + "'");
+    rs = st.executeQuery("select * from members where uname='" + userid + "' and password='" + pwd + "'");
     if (rs.next()) {
         session.setAttribute("userid", userid);
-        //out.println("welcome " + userid);
-        //out.println("<a href='logout.jsp'>Log out</a>");
         response.sendRedirect("success.jsp");
     } else {
-        %>Wrong Username or Password.....<br>
-        If you do not Redirect within 5 seconds <a href="index.jsp" style="font-size:25px;">click here......</a>
-        <script>setTimeout(function(){window.location.href="index.jsp"},5000);</script>
-        
-        
-        <%
-        
-    }
 %>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Tomato</title>
+        <link rel="stylesheet" href="w3.css" type="text/css">
+    </head>
+
+    <style>
+        .dfHgt {
+            color: #212121;
+            text-align:center;
+        }
+    </style>
+    <div class="w3-container w3-center ">
+        <div class="w3-xxlarge"> Tomato</div>
+    </div>
+    <p class="dfHgt">
+        !<br>
+        Wrong Username or Password.<br>
+        If you do not redirect within 5 seconds <a href="index.jsp">click here</a>
+        <script>setTimeout(function () {
+                window.location.href = "index.jsp"
+            }, 5000);</script>
+    </p>
+
+    <%
+        }
+    %>
