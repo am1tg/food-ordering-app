@@ -1,4 +1,4 @@
-# **Food ordering app**
+# **Food Ordering App**
 **How to deploy on your local**
  1. Open in Netbeans/Eclipse
  2. Click `Clean and Build`
